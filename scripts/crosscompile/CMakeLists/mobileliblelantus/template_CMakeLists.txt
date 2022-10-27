@@ -13,7 +13,7 @@ SET(OPENSSL_LIBRARIES "ssl" "crypto")
 
 LINK_DIRECTORIES(${OPENSSL_LIBRARIES_DIR}/*)
 
-add_subdirectory(secp256k1)
+#add_subdirectory(secp256k1)
 
 set_property(SOURCE src/lelantus.cpp
     bitcoin/amount.cpp
@@ -75,8 +75,8 @@ add_library(mobileliblelantus SHARED
     src/dart_interface.cpp)
 
 #target_link_libraries(mobileliblelantus ${OPENSSL_LIBRARIES} secp256k1)
-target_link_libraries(mobileliblelantus "${OPENSSL_LIBRARIES_DIR}/libcrypto.a" "${OPENSSL_LIBRARIES_DIR}/libssl.a" secp256k1)
+target_link_libraries(mobileliblelantus "${OPENSSL_LIBRARIES_DIR}/libcrypto.a" "${OPENSSL_LIBRARIES_DIR}/libssl.a" "${OPENSSL_ROOT_DIR}/secp256k1/libsecp256k1.a")
 
-add_dependencies(mobileliblelantus secp256k1)
+#add_dependencies(mobileliblelantus secp256k1)
 
 target_include_directories(mobileliblelantus PUBLIC secp256k1 ${OPENSSL_INCLUDE_DIR})
